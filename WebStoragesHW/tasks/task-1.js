@@ -8,6 +8,7 @@ function solve() {
     isInitCalled = true;
     generateNumber();
     theNumber = numberDigits.join('');
+    console.log(theNumber);
     $('#name-input').hide();
     $('#the-label').text('Enter your guess number: ').attr('for', 'guess-input').after($('<input />').attr('id', 'guess-input'));
     $('#start-button').text('Guess').unbind().click(function(){
