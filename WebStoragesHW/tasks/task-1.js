@@ -8,7 +8,6 @@ function solve() {
     isInitCalled = true;
     generateNumber();
     theNumber = numberDigits.join('');
-    console.log(theNumber);
     $('#name-input').hide();
     $('#the-label').text('Enter your guess number: ').attr('for', 'guess-input').after($('<input />').attr('id', 'guess-input'));
     $('#start-button').text('Guess').unbind().click(function(){
@@ -61,13 +60,12 @@ function solve() {
   }
   
   function generateNumber(){
-    var differentDigitsCheck = function(firstDigit){
-      return firstDigit !== this;
-    };
     numberDigits.push(Math.floor(Math.random()*9) + 1);
     while(numberDigits.length < 4){
       var nextNumber = Math.floor(Math.random()*10);
-      if (numberDigits.every(differentDigitsCheck, nextNumber)) {
+      if (numberDigits.every(function(item){
+        return item !== nextNumber;
+      })) {
         numberDigits.push(nextNumber);
       }
     }
